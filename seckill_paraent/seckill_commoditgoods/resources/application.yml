@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: commoditgoods
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+#    cluster:
+#      nodes:
+#        - 127.0.0.1:7000
+#        - 127.0.0.1:7001
+    timeout: 3000
+    pool:
+      max-active: 100
+      max-wait: 1000
+      max-idle: 30
+      min-idle: 20
+  velocity:
+    charset: UTF-8
+    properties.input.encoding: UTF-8
+    properties.output.encoding: UTF-8
+    resourceLoaderPath: classpath:/templates/
+    suffix: .vm
+  datasource:
+    druid:
+      url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf8
+      username: yefeng_user
+      password: yeFeng1+2=3%100
+      type: com.alibaba.druid.pool.DruidDataSource
+      driverClassName: com.mysql.jdbc.Driver
+      initialSize: 5
+      minIdle: 5
+      maxActive: 20
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      estOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      filters: stat,wall,log4j
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000    
+server:
+  port: 8091
+
+logging:
+  path: ${user.home}/logs/order
